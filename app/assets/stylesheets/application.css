@@ -15,7 +15,7 @@
  */
 
 .project, .comment, .history_entry {
-  background-color: #f8f8f8;
+  background-color: #f8f8f88a;
   padding: 0.5em;
   border-radius: 0.5em;
   margin: 1em 0;
