@@ -8,7 +8,7 @@ RSpec.configure do |config|
 
   Capybara.register_driver :selenium_chrome do |app|
     options = Selenium::WebDriver::Chrome::Options.new
-    options.add_argument('--headless') if ENV['CAPYBARA_HEADLESS'] == 'true'
+    options.add_argument('--headless') unless ENV['CAPYBARA_HEADLESS'] == 'false'
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
