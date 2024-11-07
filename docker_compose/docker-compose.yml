@@ -1,0 +1,38 @@
+services:
+  rails_app:
+    image: docker.io/oleksamarko/projects_with_comments_test:latest
+    container_name: rails_app
+    restart: unless-stopped
+    environment:
+      - RAILS_ENV=production
+      - SECRET_KEY_BASE_DUMMY=1
+    expose:
+      - 3000
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: unless-stopped
+    expose:
+      - 6379
+
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - rails_app
+    depends_on:
+      - rails_app
+    volumes:
+      - "./nginx_templates:/etc/nginx/templates:ro"
+      - "/var/log/nginx:/var/log/nginx"
+      # - "${LETSENCRYPT_ETC_PATH}:/etc/letsencrypt"
+      - "/etc/ssl:/etc/ssl:ro"
+    volumes_from:
+      - rails_app
+    environment:
+      - NGINX_ENVSUBST_TEMPLATE_DIR=/etc/nginx/templates
