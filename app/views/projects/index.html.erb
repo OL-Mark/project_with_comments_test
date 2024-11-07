@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Projects" %>
+<div class="projects_toolbar">
+  <%= link_to "New project", new_project_path %>
+</div>
+
+<h1>Projects</h1>
+
+<div class="projects_wrapper">
+  <% @projects.each do |project| %>
+    <div class='project_wrapper'>
+      <%= render project %>
+      <div class="project_toolbar">
+        <%= link_to "Show this project ->", project %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,36 @@
+<div class='project_toolbar'>
+  <%= link_to "<- Back to projects", projects_path %> |
+  <%= link_to "Edit this project", edit_project_path(@project) %>
+  <% if @project.audits.exists? %>
+    | <%= link_to "Changes history", changes_history_path(@project.class, @project) %>
+  <% end %>
+</div>
+
+<p style="color: green"><%= notice %></p>
+
+<%= render @project %>
+
+<h3>
+  Comments:
+</h2>
+
+<div class='comments' id='comments'>
+  <div>
+    <% @project.comments.each do |comment| %>
+      <%= render comment %>
+      <p>
+        <%= link_to "Edit", edit_project_comment_path(project_id: @project, id: comment) %>
+        <% if comment.edited? %>
+          | <%= link_to "Changes history", changes_history_path(comment.class, comment) %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<div class='new_comment_wrapper'>
+  <h3>
+    New comment:
+  </h2>
+  <%= turbo_frame_tag id="new_comment", src: new_project_comment_path(project_id: @project) %>
+</div>

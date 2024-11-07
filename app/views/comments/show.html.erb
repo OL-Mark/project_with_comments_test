@@ -1,0 +1,8 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @comment %>
+
+<div>
+  <%= link_to "Edit this comment", edit_project_comment_path(project_id: @project, id: @comment) %> |
+  <%= link_to "Back to project", @comment.project %>
+</div>

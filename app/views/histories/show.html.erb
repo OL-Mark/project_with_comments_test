@@ -1,0 +1,7 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="history_entries">
+  <% @history_entries.each do |history_entry| %>
+    <%= render history_entry %>
+  <% end %>
+</div>

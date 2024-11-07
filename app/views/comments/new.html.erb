@@ -1,0 +1,11 @@
+<% content_for :title, "New comment" %>
+
+<h1>New comment</h1>
+
+<%= render "turbo_form", comment: @comment %>
+
+<br>
+
+<div>
+  <%= link_to "Back to comments", project_comments_path(project_id: @project) %>
+</div>

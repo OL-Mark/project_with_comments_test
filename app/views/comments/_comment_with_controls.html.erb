@@ -1,0 +1,8 @@
+<%= render 'comments/comment', comment: comment %>
+
+<p>
+  <%= link_to "Edit", edit_project_comment_path(project_id: @project, id: comment) %>
+  <% if comment.edited? %>
+    | <%= link_to "Changes history", changes_history_path(comment.class, comment) %>
+  <% end %>
+</p>
